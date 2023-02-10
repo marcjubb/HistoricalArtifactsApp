@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "432936393486",
+    "project_id": "artifactsapp-8b3ea",
+    "storage_bucket": "artifactsapp-8b3ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:432936393486:android:ac9f87a9ff6c5cbedb555f",
+        "android_client_info": {
+          "package_name": "com.example.historicalartifactsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "432936393486-j9ktc4ia34cg9pakt6vc9srtj7ba0qi0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdVkiXhALpohNRYAi0oz-skaQpmO1yn7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "432936393486-j9ktc4ia34cg9pakt6vc9srtj7ba0qi0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
