@@ -1,25 +1,24 @@
 package com.example.historicalartifactsapp
 
 
-import android.content.ClipDescription
 import android.content.ContentValues
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.util.Log
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 
-class Review(var artifactName: String, var userID: String, var reviewDate:
-String,var artifactDescription:
-String,  var status: String) {
+class Review(
+    var artifactID: String?, var artifactName: String, var userID: String, var reviewDate:
+String, var artifactDescription:
+String, var status: String) {
 
-    constructor(): this("","","","","")
+    constructor(): this("","","","","","")
 
     fun storeReview() {
         val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
         val artifactMap: MutableMap<String, Any?> = HashMap()
+        artifactMap["artifactID"] = artifactID
         artifactMap["artifactName"] = artifactName
         artifactMap["artifactDescription"] = artifactDescription
         artifactMap["userID"] = userID

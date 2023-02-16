@@ -21,7 +21,7 @@ class UserRequestActivity : AppCompatActivity() {
     private lateinit var firebaseDatabase: FirebaseDatabase
     private lateinit var databaseReference: DatabaseReference
     private lateinit var firestore: FirebaseFirestore
-
+    private lateinit var artifactId: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.user_edit_request_page)
@@ -33,22 +33,22 @@ class UserRequestActivity : AppCompatActivity() {
 
         firestore = FirebaseFirestore.getInstance()
 
-        val artifactId = intent.getStringExtra("artifact_id")
+         artifactId = intent.getStringExtra("artifactID")!!
+        println("in:"+artifactId)
 
-        if (artifactId != null) {
-            firestore.collection("Artifacts").document(artifactId)
-                .get()
-                .addOnSuccessListener { documentSnapshot ->
-                    val artifact = documentSnapshot.toObject(Artifact::class.java)
-                    if (artifact != null) {
-                        artifactNameEditText.setText(artifact.name)
-                        artifactDescriptionEditText.setText(artifact.description)
-                    }
+        firestore.collection("Artifacts").document(artifactId)
+            .get()
+            .addOnSuccessListener { documentSnapshot ->
+                val artifact = documentSnapshot.toObject(Artifact::class.java)
+                if (artifact != null) {
+                    artifactNameEditText.setText(artifact.name)
+                    artifactDescriptionEditText.setText(artifact.description)
+
                 }
-                .addOnFailureListener { exception ->
-                    Log.w(ContentValues.TAG, "Error getting artifact details", exception)
-                }
-        }
+            }
+            .addOnFailureListener { exception ->
+                Log.w(ContentValues.TAG, "Error getting artifact details", exception)
+            }
 
 
 
@@ -56,14 +56,16 @@ class UserRequestActivity : AppCompatActivity() {
 
 
         submitRequestButton.setOnClickListener {
+            println("in2:"+artifactId)
             val artifactName = artifactNameEditText.text.toString()
             val artifactDescription = artifactDescriptionEditText.text.toString()
+
             if (artifactName.isNotEmpty() && artifactDescription.isNotEmpty()) {
                 val currentUser = FirebaseAuth.getInstance().currentUser
                 if (currentUser != null) {
                     val userid = currentUser.uid
                     val review = Review(
-                        artifactName, userid,
+                        artifactId, artifactName, userid,
                         "1.1", artifactDescription, "pending"
                     )
                     review.storeReview()

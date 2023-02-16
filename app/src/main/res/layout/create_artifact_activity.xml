@@ -34,6 +34,12 @@
         android:layout_height="wrap_content"
         android:inputType="text"/>
 
+    <Button
+        android:id="@+id/upload_picture_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upload Picture"
+        android:onClick="uploadPicture"/>
 
     <Button
         android:id="@+id/btnCreateArtifact"
@@ -41,5 +47,14 @@
         android:layout_height="wrap_content"
         android:text="Create Artifact"
         android:onClick="createArtifact"/>
+
+    <ImageView
+        android:id="@+id/tempImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:srcCompat="@android:drawable/ic_menu_view"
+      />
+
 
 </LinearLayout>

@@ -14,6 +14,9 @@
         <activity android:name=".ArtifactActivity">
 
         </activity>
+        <activity android:name=".ReviewDetailActivity">
+
+        </activity>
         <activity android:name=".AdminRequestActivity">
 
         </activity>

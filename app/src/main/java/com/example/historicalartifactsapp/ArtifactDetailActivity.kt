@@ -20,32 +20,35 @@ class ArtifactDetailActivity : AppCompatActivity() {
     private lateinit var artifactNameView: TextView
     private lateinit var artifactDescriptionView: TextView
     private lateinit var artifactRequestButton: Button
+    private lateinit var artifactEditButton: Button
+    private lateinit var artifactDeleteButton: Button
+    private lateinit var artifactId: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.artifact_detailed_page)
         artifactRequestButton = findViewById(R.id.request_edit_button)
         artifactNameView = findViewById(R.id.artifact_name)
         artifactDescriptionView = findViewById(R.id.artifact_description)
+        artifactEditButton = findViewById(R.id.edit_button)
+        artifactDeleteButton = findViewById(R.id.delete_button)
 
         firestore = FirebaseFirestore.getInstance()
 
-        val artifactId = intent.getStringExtra("artifact_id")
+        artifactId = intent.getStringExtra("artifact_id")!!
 
-        if (artifactId != null) {
-            firestore.collection("Artifacts").document(artifactId)
-                .get()
-                .addOnSuccessListener { documentSnapshot ->
-                    val artifact = documentSnapshot.toObject(Artifact::class.java)
-                    if (artifact != null) {
-                        artifactNameView.text = artifact.name
-                        artifactDescriptionView.text = artifact.description
-                    }
+        firestore.collection("Artifacts").document(artifactId)
+            .get()
+            .addOnSuccessListener { documentSnapshot ->
+                val artifact = documentSnapshot.toObject(Artifact::class.java)
+                if (artifact != null) {
+                    artifactNameView.text = artifact.name
+                    artifactDescriptionView.text = artifact.description
+                }
 
-                }
-                .addOnFailureListener { exception ->
-                    Log.w(ContentValues.TAG, "Error getting artifact details", exception)
-                }
-        }
+            }
+            .addOnFailureListener { exception ->
+                Log.w(ContentValues.TAG, "Error getting artifact details", exception)
+            }
 
         FirebaseAuth.getInstance().currentUser?.let { user ->
             isLoggedUser(user.uid) { isLoggedUser ->
@@ -53,10 +56,21 @@ class ArtifactDetailActivity : AppCompatActivity() {
                     artifactRequestButton.visibility = View.VISIBLE
                 }
             }
+            isUserCurator(user.uid) { isCurator ->
+                if (isCurator) run {
+                    artifactRequestButton.visibility = View.GONE
+                    artifactEditButton.visibility = View.VISIBLE
+                    artifactDeleteButton.visibility = View.VISIBLE
+                }
+            }
         }
 
         artifactRequestButton.setOnClickListener(View.OnClickListener {
-            switchActivitiesRequest()
+
+            val switchActivityIntent = Intent(this, UserRequestActivity::class.java)
+            switchActivityIntent.putExtra("artifactID", artifactId)
+            startActivity(switchActivityIntent)
+
         })
 
     }
@@ -80,5 +94,7 @@ class ArtifactDetailActivity : AppCompatActivity() {
 
         }
     }
+
+
 
 }

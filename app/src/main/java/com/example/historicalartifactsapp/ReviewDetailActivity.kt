@@ -26,7 +26,7 @@ class ReviewDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
 
-        setContentView(R.layout.artifact_detailed_page)
+        setContentView(R.layout.review_detailed_page)
         reviewAcceptButton = findViewById(R.id.accept_request_button)
         reviewDeclineButton = findViewById(R.id.decline_request_button)
         artifactNameView = findViewById(R.id.artifact_name)
@@ -60,18 +60,70 @@ class ReviewDetailActivity : AppCompatActivity() {
 
 
         reviewAcceptButton.setOnClickListener(View.OnClickListener {
-            println("ACCEPT")
+            acceptReview()
         })
         reviewDeclineButton.setOnClickListener(View.OnClickListener {
-            println("DECLINE")
+            declineReview()
         })
 
     }
 
-    private fun switchActivitiesRequest() {
+    private fun declineReview() {
+        firestore = FirebaseFirestore.getInstance()
+        val reviewID = intent.getStringExtra("review_id")
+        if (reviewID != null) {
+            val reviewRef = firestore.collection("Reviews").document(reviewID)
+            reviewRef.update("status", "denied")
+                .addOnSuccessListener {
+                    Log.d("Firestore", "Review denied successfully")
+                }
+                .addOnFailureListener {
+                    Log.e("Firestore", "Error denied review: ${it.message}")
+                }
+        }
 
-        val switchActivityIntent = Intent(this, UserRequestActivity::class.java)
-        startActivity(switchActivityIntent)
     }
+
+    private fun acceptReview() {
+        firestore = FirebaseFirestore.getInstance()
+        val reviewID = intent.getStringExtra("review_id")
+        if (reviewID != null) {
+            val reviewRef = firestore.collection("Reviews").document(reviewID)
+            reviewRef.update("status", "approved")
+                .addOnSuccessListener {
+                    Log.d("Firestore", "Review approved successfully")
+                }
+                .addOnFailureListener {
+                    Log.e("Firestore", "Error approved review: ${it.message}")
+                }
+
+            firestore.collection("Reviews").document(reviewID)
+                .get()
+                .addOnSuccessListener {documentSnapshot ->
+                    val review = documentSnapshot.toObject(Review::class.java)
+                    if (review != null) {
+                        val artifactID = review.artifactID
+                        if (artifactID != null) {
+                            firestore.collection("Artifacts")
+                                .document(artifactID)
+                                .update("description", review.artifactDescription,
+                                    "name", review.artifactName)
+                                .addOnSuccessListener {
+                                    Log.d(ContentValues.TAG, "Artifact updated successfully")
+                                }
+                                .addOnFailureListener { e ->
+                                    Log.w(ContentValues.TAG, "Error updating artifact", e)
+                                }
+                        }
+                    }
+
+                }
+                .addOnFailureListener { e ->
+                    Log.w(ContentValues.TAG, "Error retrieving reviews", e)
+                }
+        }
+    }
+
+
 
 }

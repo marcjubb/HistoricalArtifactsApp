@@ -9,9 +9,9 @@ import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 
-class Artifact(var name: String, var description: String) {
+class Artifact(var name: String, var description: String, var image: String? = null) {
 
-    constructor(): this("","")
+    constructor(): this("","", "")
 
     fun storeArtifact() {
         val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
