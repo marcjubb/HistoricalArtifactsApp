@@ -4,12 +4,16 @@ import android.content.ContentValues
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
+import android.widget.ImageView
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.squareup.picasso.Picasso
 
-class Artifact(var name: String, var description: String, var image: String? = null) {
+class Artifact(var name: String, var description: String, var imageName: String? = null) {
 
     constructor(): this("","", "")
 
@@ -18,6 +22,7 @@ class Artifact(var name: String, var description: String, var image: String? = n
         val artifactMap: MutableMap<String, Any?> = HashMap()
         artifactMap["name"] = name
         artifactMap["description"] = description
+        artifactMap["imageName"] = imageName
         firestore.collection("Artifacts").add(artifactMap)
             .addOnSuccessListener(OnSuccessListener<DocumentReference> { documentReference ->
                 Log.d(
@@ -45,7 +50,6 @@ class Artifact(var name: String, var description: String, var image: String? = n
                 callback(null)
             }
     }
-
 
 }
 

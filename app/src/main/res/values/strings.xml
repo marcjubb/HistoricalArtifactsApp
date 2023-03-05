@@ -1,7 +1,15 @@
 <resources>
     <string name="app_name">HistoricalArtifactsApp</string>
-    <string name="login">Login</string>
+    <string name="login">Log in</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login_btnIn">Login</string>
+    <string name="create_btnIn">Create an Account</string>
+    <string name="artifact_list">Artifact List</string>
+    <string name="add_an_artifact">Add an Artifact</string>
+    <string name="view_requests">View Requests</string>
+    <string name="view_artifact">View Artifact</string>
+    <string name="upload_picture">Upload Picture</string>
+    <string name="create_artifact">Create Artifact</string>
+    <string name="description">Description</string>
 </resources>

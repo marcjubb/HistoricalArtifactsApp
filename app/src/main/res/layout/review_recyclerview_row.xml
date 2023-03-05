@@ -2,31 +2,50 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="10dp">
 
-
     <TextView
         android:id="@+id/artifact_name"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:padding="16dp"
         android:textSize="16sp"
+        android:textStyle="bold"
         android:visibility="visible" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"/>
 
     <TextView
         android:id="@+id/status"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:textSize="16sp" />
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+
+
     <Button
         android:id="@+id/view_review_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View Review" />
+        android:layout_gravity="center_horizontal"
+        android:text="View Review"
+        android:textSize="16sp" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
 
-
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"/>
 
 </LinearLayout>

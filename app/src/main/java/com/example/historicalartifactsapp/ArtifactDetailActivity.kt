@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -14,6 +15,9 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.auth.User
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.squareup.picasso.Picasso
 
 class ArtifactDetailActivity : AppCompatActivity() {
     private lateinit var firestore: FirebaseFirestore
@@ -23,14 +27,18 @@ class ArtifactDetailActivity : AppCompatActivity() {
     private lateinit var artifactEditButton: Button
     private lateinit var artifactDeleteButton: Button
     private lateinit var artifactId: String
+    private lateinit var artifactImageView: ImageView
+    private val storageRef = FirebaseStorage.getInstance().reference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.artifact_detailed_page)
+
         artifactRequestButton = findViewById(R.id.request_edit_button)
         artifactNameView = findViewById(R.id.artifact_name)
         artifactDescriptionView = findViewById(R.id.artifact_description)
         artifactEditButton = findViewById(R.id.edit_button)
         artifactDeleteButton = findViewById(R.id.delete_button)
+        artifactImageView = findViewById(R.id.artifact_image)
 
         firestore = FirebaseFirestore.getInstance()
 
@@ -43,6 +51,11 @@ class ArtifactDetailActivity : AppCompatActivity() {
                 if (artifact != null) {
                     artifactNameView.text = artifact.name
                     artifactDescriptionView.text = artifact.description
+                    val storagePath = "images/${artifact.imageName }"
+                    val imageRef: StorageReference = storageRef.child(storagePath)
+                    imageRef.downloadUrl.addOnSuccessListener { uri ->
+                        Picasso.get().load(uri).into(artifactImageView)
+                    }
                 }
 
             }

@@ -1,12 +1,14 @@
-package com.example.historicalartifactsapp;
+package com.example.historicalartifactsapp
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.storage.FirebaseStorage
 import java.io.ByteArrayOutputStream
@@ -17,43 +19,52 @@ class CreateArtifactActivity : AppCompatActivity() {
     private lateinit var descriptionEditText: EditText
     private lateinit var btnUpload: Button
     private lateinit var imageTemp: ImageView
+    private var imageUri: Uri? = null
 
     @SuppressLint("DiscouragedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.create_artifact_activity)
 
-        btnUpload = findViewById(R.id.upload_picture_button);
+        btnUpload = findViewById(R.id.upload_picture_button)
         nameEditText = findViewById(R.id.etName)
         descriptionEditText = findViewById(R.id.etDescription)
+        val timeStamp = System.currentTimeMillis().toString()
+        val imageName = "${nameEditText.text}-$timeStamp.png"
         imageTemp = findViewById(R.id.tempImage)
+        val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            if (uri != null) {
+
+                uploadPictureToFirebase(imageName, uri)
+            }
+        }
 
         val createArtifactButton : Button =   findViewById(R.id.btnCreateArtifact)
 
-
-
+        btnUpload.setOnClickListener {
+            pickImage.launch("image/*")
+            loadImageFromFirebase(imageName, imageTemp)
+        }
 
         createArtifactButton.setOnClickListener {
             val artifact = Artifact(
                 nameEditText.text.toString(),
-                descriptionEditText.text.toString()
-
+                descriptionEditText.text.toString(),
+                imageName,
             )
-            val imageName = "nutty"
-            val resId = resources.getIdentifier(imageName, "drawable", packageName)
-            uploadPictureToFirebase("$imageName.png", resId)
+            imageUri?.let { uploadPictureToFirebase(imageName, it) }
             artifact.storeArtifact()
-
-            loadImageFromFirebase("$imageName.png",imageTemp)
         }
     }
 
 
-    private fun uploadPictureToFirebase(fileName: String, resourceId: Int) {
+    private fun uploadPictureToFirebase(fileName: String, imageUri: Uri) {
         val storageRef = FirebaseStorage.getInstance().reference
         val drawableRef = storageRef.child("images/$fileName")
 
-        val bitmap = BitmapFactory.decodeResource(resources, resourceId)
+        val inputStream = contentResolver.openInputStream(imageUri)
+        val bitmap = BitmapFactory.decodeStream(inputStream)
+
         val baos = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
         val data = baos.toByteArray()
@@ -83,10 +94,5 @@ class CreateArtifactActivity : AppCompatActivity() {
             // Handle any errors here
         }
     }
-
-
-
-
-
 
 }
