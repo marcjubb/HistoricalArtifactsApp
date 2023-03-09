@@ -21,7 +21,7 @@ class CreateArtifactActivity : AppCompatActivity() {
     private lateinit var imageTemp: ImageView
     private var imageUri: Uri? = null
 
-    @SuppressLint("DiscouragedApi")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.create_artifact_activity)
@@ -29,12 +29,14 @@ class CreateArtifactActivity : AppCompatActivity() {
         btnUpload = findViewById(R.id.upload_picture_button)
         nameEditText = findViewById(R.id.etName)
         descriptionEditText = findViewById(R.id.etDescription)
+
+
         val timeStamp = System.currentTimeMillis().toString()
-        val imageName = "${nameEditText.text}-$timeStamp.png"
+        val imageName = "-$timeStamp.png"
         imageTemp = findViewById(R.id.tempImage)
+
         val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             if (uri != null) {
-
                 uploadPictureToFirebase(imageName, uri)
             }
         }

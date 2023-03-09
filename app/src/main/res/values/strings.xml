@@ -12,4 +12,18 @@
     <string name="upload_picture">Upload Picture</string>
     <string name="create_artifact">Create Artifact</string>
     <string name="description">Description</string>
+    <string name="cabinet_selection">Cabinet Selection</string>
+    <string name="artifact_image">artifact_image</string>
+    <string name="artifact_name">Artifact Name</string>
+    <string name="artifact_description">Artifact Description</string>
+    <string name="request_an_edit">Request an edit</string>
+    <string name="edit_artifact">Edit Artifact</string>
+    <string name="delete_artifact">Delete Artifact</string>
+    <string name="create_an_artifact">Create an Artifact</string>
+    <string name="uploaded_image">uploaded_image</string>
+    <string name="name">Name</string>
+    <string name="add_a_description">Add a description</string>
+    <string name="name_of_artifact">Name of Artifact</string>
+    <string name="add_a_name">add a name</string>
+    <string name="update_artifact">Update Artifact</string>
 </resources>

@@ -14,11 +14,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/create_an_artifact"
-            android:textSize="24sp"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="16dp"
-            android:textColor="@color/black"/>
+            android:text="@string/edit_artifact"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
 
         <ImageView
             android:id="@+id/tempImage"
@@ -76,10 +76,10 @@
             android:layout_marginTop="16dp"/>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnCreateArtifact"
+            android:id="@+id/update_artifact_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/create_artifact"
+            android:text="@string/update_artifact"
             android:layout_marginTop="16dp"/>
 
     </LinearLayout>

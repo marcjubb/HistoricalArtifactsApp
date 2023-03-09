@@ -78,6 +78,31 @@ class ArtifactDetailActivity : AppCompatActivity() {
             }
         }
 
+        artifactEditButton.setOnClickListener(View.OnClickListener {
+
+            val switchActivityIntent = Intent(this, EditArtifactActivity::class.java)
+            switchActivityIntent.putExtra("artifactID", artifactId)
+            startActivity(switchActivityIntent)
+
+        })
+
+        artifactDeleteButton.setOnClickListener {
+            firestore.collection("Artifacts").document(artifactId).get().addOnSuccessListener { documentSnapshot ->
+                val artifact = documentSnapshot.toObject(Artifact::class.java)
+                if (artifact != null) {
+                    artifact.deleteArtifact()
+                    val switchActivityIntent = Intent(this, ArtifactActivity::class.java)
+                    startActivity(switchActivityIntent)
+                } else {
+                    // Artifact not found
+                    Log.w(ContentValues.TAG, "Artifact not found for ID: $artifactId")
+                }
+            }.addOnFailureListener { exception ->
+                // Error getting artifact details
+                Log.w(ContentValues.TAG, "Error getting artifact details", exception)
+            }
+        }
+
         artifactRequestButton.setOnClickListener(View.OnClickListener {
 
             val switchActivityIntent = Intent(this, UserRequestActivity::class.java)

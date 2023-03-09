@@ -50,7 +50,32 @@ class Artifact(var name: String, var description: String, var imageName: String?
                 callback(null)
             }
     }
-
+    fun deleteArtifact() {
+        val firestore = FirebaseFirestore.getInstance()
+        val storage = FirebaseStorage.getInstance()
+        getID { id ->
+            if (id != null) {
+                // Delete the artifact data from Firestore
+                firestore.collection("Artifacts").document(id)
+                    .delete()
+                    .addOnSuccessListener {
+                        Log.d(ContentValues.TAG, "Artifact deleted with ID: $id")
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w(ContentValues.TAG, "Error deleting artifact with ID: $id", e)
+                    }
+                // Delete the artifact image from Firebase Storage
+                val storageRef = storage.reference.child("images/$imageName")
+                storageRef.delete()
+                    .addOnSuccessListener {
+                        Log.d(ContentValues.TAG, "Artifact image deleted with name: $imageName")
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w(ContentValues.TAG, "Error deleting artifact image with name: $imageName", e)
+                    }
+            }
+        }
+    }
 }
 
 

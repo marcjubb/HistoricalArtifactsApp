@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/login_back"
+    android:background="@drawable/background"
     android:orientation="vertical"
     tools:context=".ArtifactActivity">
 
@@ -24,20 +24,23 @@
 
         <Button
             android:id="@+id/admin_req_button"
+            style="?android:attr/buttonBarStyle"
             android:layout_width="120dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:text="@string/view_requests"
             android:visibility="gone" />
 
         <Button
             android:id="@+id/cabinet_select_btn"
-            android:layout_width="120dp"
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_weight="1"
-            android:text="Cabinet Selection"
-            android:visibility="visible" />
+            android:text="@string/cabinet_selection"
+            tools:ignore="VisualLintButtonSize" />
+
 
         <Button
             android:id="@+id/admin_button"
@@ -45,9 +48,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:text="@string/add_an_artifact"
-            android:visibility="gone" />
+            android:visibility="gone"
+            style="?android:attr/buttonBarStyle" />
     </LinearLayout>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/artifact_recycler_view"

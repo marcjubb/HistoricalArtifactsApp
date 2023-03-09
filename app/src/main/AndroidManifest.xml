@@ -20,6 +20,9 @@
         <activity android:name=".ReviewDetailActivity">
 
         </activity>
+        <activity android:name=".EditArtifactActivity">
+
+        </activity>
         <activity android:name=".AdminRequestActivity">
 
         </activity>
