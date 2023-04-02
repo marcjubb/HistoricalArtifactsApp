@@ -17,6 +17,12 @@
         <activity android:name=".ArtifactActivity">
 
         </activity>
+        <activity android:name=".CreateCabinetActivity">
+
+        </activity>
+        <activity android:name=".CabinetSelectionActivity">
+
+        </activity>
         <activity android:name=".ReviewDetailActivity">
 
         </activity>

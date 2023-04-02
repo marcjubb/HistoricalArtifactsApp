@@ -14,11 +14,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/create_an_artifact"
-            android:textSize="24sp"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="16dp"
-            android:textColor="@color/black"/>
+            android:text="Create a Cabinet!"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
 
         <ImageView
             android:id="@+id/tempImage"
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:padding="16dp"
-            android:text="@string/name"
+            android:text="Title"
             android:textColor="#006064"
             android:textSize="18sp" />
 
@@ -42,9 +42,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:autofillHints="Name of Artifact"
+            android:hint="Add a Title"
             android:inputType="text"
             android:minHeight="48dp"
-            android:hint="@string/add_a_name"
             tools:ignore="LabelFor,VisualLintTextFieldSize" />
 
         <TextView
@@ -79,8 +79,8 @@
             android:id="@+id/btnCreateCabinet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/create_artifact"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp"
+            android:text="Create" />
 
     </LinearLayout>
 </ScrollView>

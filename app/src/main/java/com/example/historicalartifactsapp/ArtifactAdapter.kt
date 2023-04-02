@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -22,7 +21,7 @@ class ArtifactAdapter(private val artifactsList: List<Artifact>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArtifactViewHolder {
         val itemView: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_row, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_row_artifact, parent, false)
         return ArtifactViewHolder(itemView)
     }
 

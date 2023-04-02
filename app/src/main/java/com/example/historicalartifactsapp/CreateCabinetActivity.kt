@@ -13,7 +13,7 @@ import com.google.firebase.storage.FirebaseStorage
 import java.io.ByteArrayOutputStream
 
 
-class CreateArtifactActivity : AppCompatActivity() {
+class CreateCabinetActivity : AppCompatActivity() {
     private lateinit var nameEditText: EditText
     private lateinit var descriptionEditText: EditText
     private lateinit var btnUpload: Button
@@ -23,7 +23,7 @@ class CreateArtifactActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.create_artifact_activity)
+        setContentView(R.layout.create_cabinet_activity)
 
         btnUpload = findViewById(R.id.upload_picture_button)
         nameEditText = findViewById(R.id.etName)
@@ -48,13 +48,13 @@ class CreateArtifactActivity : AppCompatActivity() {
         }
 
         createArtifactButton.setOnClickListener {
-            val artifact = Artifact(
+            val cabinet = Cabinet(
                 nameEditText.text.toString(),
                 descriptionEditText.text.toString(),
                 imageName,
             )
             imageUri?.let { uploadPictureToFirebase(imageName, it) }
-            artifact.storeArtifact()
+            cabinet.storeCabinet()
         }
     }
 

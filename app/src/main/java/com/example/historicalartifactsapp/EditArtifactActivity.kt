@@ -136,7 +136,7 @@ class EditArtifactActivity : AppCompatActivity() {
         uploadTask.addOnSuccessListener { taskSnapshot ->
             val downloadUrl = taskSnapshot.metadata?.reference?.downloadUrl.toString()
             completion(downloadUrl)
-        }.addOnFailureListener { exception ->
+        }.addOnFailureListener {
             // Handle error
             completion(null.toString())
         }
