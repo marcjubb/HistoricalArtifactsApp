@@ -30,4 +30,6 @@
     <string name="view_cabinet">View Cabinet</string>
     <string name="search_hint">Search Artifacts</string>
     <string name="search">Search</string>
+    <string name="view_notifications">View Notifications</string>
+    <string name="clear">Clear</string>
 </resources>

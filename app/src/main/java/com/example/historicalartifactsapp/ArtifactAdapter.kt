@@ -1,7 +1,9 @@
 package com.example.historicalartifactsapp
 
 
+import android.content.ContentValues.TAG
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +11,9 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
@@ -34,18 +39,17 @@ class ArtifactAdapter(private val artifactsList: List<Artifact>) :
 
 
 
-
-
     override fun getItemCount(): Int {
         return artifactsList.size
     }
     inner class ArtifactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val storageRef = FirebaseStorage.getInstance().reference
-
+        val bookmarksRef = Firebase.firestore.collection("Bookmarks")
         private val artifactImage: ImageView = itemView.findViewById(R.id.image)
 
         fun bind(artifact: Artifact) {
             val viewArtifactButton: Button = itemView.findViewById(R.id.view_artifact_button)
+            val bookmarkButton: Button = itemView.findViewById(R.id.bookmark_button)
             val artifactName: TextView = itemView.findViewById(R.id.name)
             val artifactDescription: TextView = itemView.findViewById(R.id.description)
             artifactName.text = artifact.name
@@ -65,6 +69,31 @@ class ArtifactAdapter(private val artifactsList: List<Artifact>) :
                     }
                 }
             })
+
+            val currentUser = FirebaseAuth.getInstance().currentUser
+            if (currentUser != null) {
+                bookmarkButton.setOnClickListener {
+                    artifact.getID { artifactId ->
+                        val bookmark = hashMapOf(
+                            "userId" to currentUser.uid, // Replace with the actual user ID
+                            "artifactId" to artifactId
+                        )
+                        bookmarksRef.add(bookmark)
+                            .addOnSuccessListener { documentReference ->
+                                Log.d(TAG, "Bookmark added with ID: ${documentReference.id}")
+                                // Update the UI to show that the artifact has been bookmarked
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w(TAG, "Error adding bookmark", e)
+                            }
+                    }
+
+                }
+            }
+
+
+
+
         }
     }
 

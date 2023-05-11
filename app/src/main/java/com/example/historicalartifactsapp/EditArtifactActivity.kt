@@ -1,16 +1,19 @@
 package com.example.historicalartifactsapp
 
+import android.content.ContentValues.TAG
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
@@ -98,7 +101,6 @@ class EditArtifactActivity : AppCompatActivity() {
         val name = artifactNameEditText.text.toString().trim()
         val description = artifactDescriptionEditText.text.toString().trim()
 
-        // Check if an image was selected and uploaded, and use the appropriate image name
         val imageNameToSave = if (imageUri != null) imageName else ""
 
         val firestore = FirebaseFirestore.getInstance()
@@ -113,6 +115,23 @@ class EditArtifactActivity : AppCompatActivity() {
         artifactRef.update(updates)
             .addOnSuccessListener {
                 Toast.makeText(this, "Changes saved", Toast.LENGTH_SHORT).show()
+                // Retrieve all users who have bookmarked the artifact
+                firestore.collection("Bookmarks")
+                    .whereEqualTo("artifactId", artifactID)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result) {
+                                val userId = document.getString("userId")
+                                if (userId != null) {
+                                    sendNotification(userId )
+                                }
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.exception)
+                        }
+                    }
+
                 finish()
             }
             .addOnFailureListener { e ->
@@ -120,6 +139,23 @@ class EditArtifactActivity : AppCompatActivity() {
             }
     }
 
+    private fun sendNotification(userId: String) {
+        val firestore = FirebaseFirestore.getInstance()
+        val notification = hashMapOf(
+            "userId" to userId,
+            "artifactId" to artifactID,
+            "time" to FieldValue.serverTimestamp()
+        )
+
+        firestore.collection("Notifications")
+            .add(notification)
+            .addOnSuccessListener { documentReference ->
+                Log.d(TAG, "Notification sent to user $userId for artifact $artifactID with ID: ${documentReference.id}")
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error sending notification to user $userId for artifact $artifactID", e)
+            }
+    }
 
     private fun uploadPictureToFirebase(fileName: String, imageUri: Uri, completion: (String) -> Unit) {
         val storageRef = FirebaseStorage.getInstance().reference
@@ -156,7 +192,7 @@ class EditArtifactActivity : AppCompatActivity() {
             imageView.setImageBitmap(imageBitmap)
             imageView.visibility = ImageView.VISIBLE
         }.addOnFailureListener {
-            // Handle any errors here
+
         }
     }
 

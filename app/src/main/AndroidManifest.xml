@@ -20,6 +20,10 @@
         <activity android:name=".CreateCabinetActivity">
 
         </activity>
+        <activity android:name=".NotificationActivity">
+
+        </activity>
+
         <activity android:name=".CabinetSelectionActivity">
 
         </activity>

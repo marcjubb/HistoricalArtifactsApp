@@ -50,7 +50,11 @@
             android:paddingTop="8dp"
             android:paddingBottom="16dp"
             android:textSize="16sp" />
-
+        <Button
+            android:id="@+id/bookmark_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bookmark" />
         <Button
             android:id="@+id/view_artifact_button"
             android:layout_width="wrap_content"

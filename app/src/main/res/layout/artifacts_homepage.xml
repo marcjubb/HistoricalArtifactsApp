@@ -73,7 +73,20 @@
             android:onClick="onSearchButtonClick"
             style="?android:attr/buttonBarStyle" />
 
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/view_notifications_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="@string/view_notifications"
+        android:textAllCaps="true"
+      />
+
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/artifact_recycler_view"
         android:layout_width="match_parent"

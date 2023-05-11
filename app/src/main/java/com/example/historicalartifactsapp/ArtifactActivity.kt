@@ -32,7 +32,7 @@ class ArtifactActivity : AppCompatActivity() {
         val adminReqButton :Button = findViewById(R.id.admin_req_button)
         val adminButton :Button = findViewById(R.id.admin_button)
         val searchButton  :Button = findViewById(R.id.search_button)
-
+        val notificationBtn :Button = findViewById(R.id.view_notifications_button)
 
         searchButton.setOnClickListener {
             val searchEditText = findViewById<EditText>(R.id.search_edit_text)
@@ -43,7 +43,9 @@ class ArtifactActivity : AppCompatActivity() {
                 recyclerView.adapter = ArtifactAdapter(artifacts)
             }
         }
-
+        notificationBtn.setOnClickListener {
+            switchActivitiesNotificationsView()
+        }
         adminButton.setOnClickListener {
             switchActivitiesCreateArtifact()
         }
@@ -73,7 +75,10 @@ class ArtifactActivity : AppCompatActivity() {
         }
 
     }
-
+    private fun switchActivitiesNotificationsView() {
+        val switchActivityIntent = Intent(this, NotificationActivity::class.java)
+        startActivity(switchActivityIntent)
+    }
     private fun switchActivitiesRequestView() {
         val switchActivityIntent = Intent(this, AdminRequestActivity::class.java)
         startActivity(switchActivityIntent)
