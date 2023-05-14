@@ -83,6 +83,7 @@
         android:layout_gravity="end"
         android:text="@string/view_notifications"
         android:textAllCaps="true"
+
       />
 
 
@@ -93,7 +94,8 @@
         android:layout_height="wrap_content"
         android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:visibility="visible" />
+        tools:visibility="visible"
+        />
 
 
 </LinearLayout>

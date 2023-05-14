@@ -60,7 +60,7 @@ class CabinetAdapter(private val cabinetList: List<Cabinet>) :
                 cabinet.getCabinetID { cabinetID ->
                     if (cabinetID != null) {
                         val intent = Intent(itemView.context, CabinetDetailActivity::class.java)
-                        intent.putExtra("cabinet_id", cabinetID)
+                        intent.putExtra("cabinetId", cabinetID)
                         itemView.context.startActivity(intent)
                     }
                 }

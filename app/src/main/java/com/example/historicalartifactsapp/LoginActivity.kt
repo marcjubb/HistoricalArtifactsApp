@@ -52,7 +52,7 @@ class LoginActivity : AppCompatActivity() {
 
         }
 
-        val adminLogin:Button = findViewById(R.id.admin_login)
+        /*val adminLogin:Button = findViewById(R.id.admin_login)
         adminLogin.setOnClickListener {
 
             val email = "t@t.com"
@@ -63,10 +63,10 @@ class LoginActivity : AppCompatActivity() {
             }
             login(email,pass);
 
-        }
+        }*/
 
 
-        val userLogin:Button = findViewById(R.id.user_login)
+       /* val userLogin:Button = findViewById(R.id.user_login)
         userLogin.setOnClickListener {
 
             val email = "k@t.com"
@@ -77,7 +77,7 @@ class LoginActivity : AppCompatActivity() {
             }
             login(email,pass);
 
-        }
+        }*/
 
         createBtn.setOnClickListener {
             switchActivitiesCreate();

@@ -70,8 +70,14 @@ class ArtifactAdapter(private val artifactsList: List<Artifact>) :
                 }
             })
 
+
             val currentUser = FirebaseAuth.getInstance().currentUser
             if (currentUser != null) {
+                if(!currentUser.isAnonymous){
+                    bookmarkButton.visibility = View.VISIBLE;
+                }
+
+
                 bookmarkButton.setOnClickListener {
                     artifact.getID { artifactId ->
                         val bookmark = hashMapOf(

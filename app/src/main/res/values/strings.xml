@@ -32,4 +32,6 @@
     <string name="search">Search</string>
     <string name="view_notifications">View Notifications</string>
     <string name="clear">Clear</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="no_active_notifications">No active notifications</string>
 </resources>

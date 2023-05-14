@@ -44,10 +44,9 @@ class Cabinet(var name: String, var description: String, var imageName: String? 
 
     fun getCabinetID(callback: (String?) -> Unit) {
         val firestore = FirebaseFirestore.getInstance()
-        firestore.collection("Artifacts")
+        firestore.collection("Cabinets")
             .whereEqualTo("name", name)
             .whereEqualTo("description", description)
-            .whereEqualTo("type", "Cabinet")
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {

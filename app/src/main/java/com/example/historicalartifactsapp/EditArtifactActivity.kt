@@ -143,7 +143,7 @@ class EditArtifactActivity : AppCompatActivity() {
         val firestore = FirebaseFirestore.getInstance()
         val notification = hashMapOf(
             "userId" to userId,
-            "artifactId" to artifactID,
+            "artifactId" to "IMB 294 Basic Operation",
             "time" to FieldValue.serverTimestamp()
         )
 
