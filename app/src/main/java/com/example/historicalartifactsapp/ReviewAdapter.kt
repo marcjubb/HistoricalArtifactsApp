@@ -15,13 +15,11 @@ class ReviewAdapter(private val reviewList: List<Review>) :
 
     RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>() {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReviewViewHolder {
         val itemView: View =
             LayoutInflater.from(parent.context).inflate(R.layout.review_recyclerview_row, parent, false)
         return ReviewViewHolder(itemView)
     }
-
     override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
         val review = reviewList[position]
         holder.artifact_name.text = review.artifactName
@@ -39,7 +37,6 @@ class ReviewAdapter(private val reviewList: List<Review>) :
         })
 
     }
-
 
 
 

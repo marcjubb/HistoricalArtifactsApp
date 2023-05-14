@@ -58,7 +58,6 @@ class ReviewDetailActivity : AppCompatActivity() {
         }
 
 
-
         reviewAcceptButton.setOnClickListener(View.OnClickListener {
             acceptReview()
         })

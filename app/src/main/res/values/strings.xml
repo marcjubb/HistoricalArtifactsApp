@@ -34,4 +34,26 @@
     <string name="clear">Clear</string>
     <string name="bookmark">Bookmark</string>
     <string name="no_active_notifications">No active notifications</string>
+    <string name="no_active_reviews">No active reviews</string>
+    <string name="view_notification_button">View notification button</string>
+    <string name="cabinet_list">Cabinet List</string>
+    <string name="create_a_cabinet">Create a Cabinet!</string>
+    <string name="create_user">Create User</string>
+    <string name="email1">Email</string>
+    <string name="password1">Password</string>
+    <string name="create_user1">Create User</string>
+    <string name="continue_as_guest">Continue as guest</string>
+    <string name="artifact_image1">Artifact image</string>
+    <string name="artifact_name2">Artifact Name</string>
+    <string name="artifact_description3">Artifact Description</string>
+    <string name="review_date3">Review Date</string>
+    <string name="status_tv">STATUS TV</string>
+    <string name="accept">Accept</string>
+    <string name="decline">Decline</string>
+    <string name="view_review">View Review</string>
+    <string name="artifact_name4">Artifact Name:</string>
+    <string name="enter_artifact_name">Enter artifact name</string>
+    <string name="description4">Description:</string>
+    <string name="enter_artifact_description">Enter artifact description</string>
+    <string name="submit_information">Submit Information</string>
 </resources>

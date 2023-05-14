@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="16dp"
-            android:text="Create a Cabinet!"
+            android:text="@string/create_a_cabinet"
             android:textColor="@color/black"
             android:textSize="24sp" />
 

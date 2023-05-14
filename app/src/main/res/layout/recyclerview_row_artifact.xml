@@ -31,7 +31,7 @@
             android:layout_height="200dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-             />
+            android:contentDescription="@string/artifact_image1" />
 
         <TextView
             android:id="@+id/name"

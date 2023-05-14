@@ -14,46 +14,46 @@
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:text="Artifact Name" />
+        android:text="@string/artifact_name2" />
 
     <TextView
         android:id="@+id/artifact_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Artifact Description" />
+        android:text="@string/artifact_description3" />
 
     <TextView
         android:id="@+id/review_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Review Date" />
+        android:text="@string/review_date3" />
 
 
     <TextView
     android:id="@+id/status_tv"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="STATUS TV" />
+    android:text="@string/status_tv" />
 
 
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/accept_request_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
-        android:text="Accept"
+        android:text="@string/accept"
 
         android:textSize="16sp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/decline_request_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
-        android:text="Decline"
+        android:text="@string/decline"
 
         android:textSize="16sp" />
 </LinearLayout>

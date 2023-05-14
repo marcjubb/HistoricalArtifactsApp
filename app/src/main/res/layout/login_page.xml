@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
@@ -26,7 +27,9 @@
         android:paddingRight="10dp"
         android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        tools:ignore="TextFields"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/et_password"
@@ -41,8 +44,9 @@
         android:paddingRight="10dp"
         android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:textSize="16sp" />
-    <Button
+        android:textSize="16sp"
+        android:autofillHints="" />
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/login_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,7 +59,7 @@
         android:drawablePadding="8dp"
         android:fontFamily="@font/roboto_medium" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/create_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,13 +74,13 @@
 
 
 
-<Button
+<com.google.android.material.button.MaterialButton
         android:id="@+id/guest_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
-        android:text="Continue as guest"
+        android:text="@string/continue_as_guest"
         android:textSize="16sp"
          />
 <!--

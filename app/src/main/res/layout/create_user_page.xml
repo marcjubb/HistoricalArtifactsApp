@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
@@ -10,7 +11,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create User"
+        android:text="@string/create_user"
         android:textSize="32sp"
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"
@@ -20,26 +21,27 @@
         android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
+        android:hint="@string/email1"
         android:inputType="text"
         android:textSize="16sp"
 
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        tools:ignore="TextFields" />
 
     <EditText
         android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
+        android:hint="@string/password1"
         android:inputType="textPassword"
         android:textSize="16sp"
         android:layout_marginTop="16dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_create_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create User"
+        android:text="@string/create_user1"
         android:textSize="16sp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="32dp" />

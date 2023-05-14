@@ -41,7 +41,6 @@ class LoginActivity : AppCompatActivity() {
 
 
         loginButton.setOnClickListener {
-
             val email = email.text.toString()
             val pass = password.text.toString()
             if (email.isEmpty() || pass.isEmpty()) {
@@ -49,7 +48,6 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             login(email,pass);
-
         }
 
         /*val adminLogin:Button = findViewById(R.id.admin_login)
@@ -106,7 +104,7 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun switchActivitiesCreate() {
-        println("create")
+
         val switchActivityIntent = Intent(this, CreateUserActivity::class.java)
         startActivity(switchActivityIntent)
     }
@@ -124,11 +122,6 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    val user = auth.currentUser
-
-
-                    // next time a new one is issued.
                     switchActivitiesHome()
                 } else {
                     // If sign in fails, display a message to the user.

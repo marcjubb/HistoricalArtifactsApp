@@ -21,11 +21,17 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 
 class ArtifactActivity : AppCompatActivity() {
+    private val search_edit_text :EditText = findViewById(R.id.search_edit_text)
+
 
 
     @SuppressLint("MissingInflatedId", "CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (savedInstanceState != null) {
+            search_edit_text.setText(savedInstanceState.getString("userInput"))
+        }
 
         setContentView(R.layout.artifacts_homepage)
         val cabinetSelectionButton :Button = findViewById(R.id.cabinet_select_btn)
@@ -75,6 +81,11 @@ class ArtifactActivity : AppCompatActivity() {
         }
 
     }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("userInput", search_edit_text.text.toString())
+    }
+
     private fun switchActivitiesNotificationsView() {
         val switchActivityIntent = Intent(this, NotificationActivity::class.java)
         startActivity(switchActivityIntent)

@@ -12,8 +12,6 @@ class CabinetSelectionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.cabinet_selection_page)
-
-
         retrieveCabinets { cabinets ->
             val recyclerView = findViewById<RecyclerView>(R.id.cabinet_recycler_view)
             recyclerView.adapter = CabinetAdapter(cabinets)

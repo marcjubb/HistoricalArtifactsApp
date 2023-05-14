@@ -54,5 +54,4 @@ private fun retrieveReviews(callback: (List<Review>) -> Unit) {
             OnFailureListener { e -> Log.w(ContentValues.TAG, "Error loading artifacts", e) }
         }
 
-
 }

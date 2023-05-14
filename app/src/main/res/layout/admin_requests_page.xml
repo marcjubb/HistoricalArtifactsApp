@@ -13,7 +13,7 @@
         android:id="@+id/noReview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="No active reviews"
+        android:text="@string/no_active_reviews"
         android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView

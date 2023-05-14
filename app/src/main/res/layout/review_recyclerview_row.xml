@@ -33,12 +33,12 @@
 
 
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/view_review_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="View Review"
+        android:text="@string/view_review"
         android:textSize="16sp" />
 
     <View

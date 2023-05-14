@@ -22,21 +22,16 @@ import com.squareup.picasso.Picasso
 class ArtifactAdapter(private val artifactsList: List<Artifact>) :
 
     RecyclerView.Adapter<ArtifactAdapter.ArtifactViewHolder>() {
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArtifactViewHolder {
         val itemView: View =
             LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_row_artifact, parent, false)
         return ArtifactViewHolder(itemView)
     }
-
     override fun onBindViewHolder(holder: ArtifactViewHolder, position: Int) {
         val artifact = artifactsList[position]
         holder.bind(artifact)
 
-
     }
-
 
 
     override fun getItemCount(): Int {
